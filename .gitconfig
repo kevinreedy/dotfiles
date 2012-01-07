@@ -1,0 +1,7 @@
+[core]
+	editor = vim
+[color]
+	ui = true
+[user]
+	name = Kevin Reedy
+	email = kevinreedy@gmail.com
