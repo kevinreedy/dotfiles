@@ -11,9 +11,9 @@ https://github.com/rtomayko/dotfiles. The main reason I chose this approach was
 to be able to push things like .ssh/authorized_keys without pushing or
 disrupting .ssh/known_hosts.
 
-When using this approach, be sure to add a "*" line to
-~/.git/info/exclude file. Otherwise, git status will drive you nuts. You'll also
-need to use `git add -f` to add new files moving forward.
+When using this approach, be sure to add a "*" line to the .gitignore file.
+Otherwise, git status will drive you nuts. You'll alsoneed to use `git add -f`
+to add new files moving forward.
 
 Feel free to grab anything from here that you find useful. I'd love to hear
 feedback from anyone!
