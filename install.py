@@ -1,53 +1,80 @@
 #!/usr/bin/env python
 import os 
 import sys
+import time
 
 # Special files not to install into previous directory
-# TODO Make this work entire whole path so we can exclude .ssh/authorized_keys but not .something/authorized_keys 
 special_files = {
     '.git',
     '.gitignore',
     'install.py',
+    '.install.py.swp',
     'README'
 }
 
-def process_dir(dir_path):
-    # Create the directory if it doesn't exist
-    if not os.path.exists("." + dir_path):
-        print "." + dir_path + " does not exist. Creating it."
-        os.mkdir("." + dir_path)
+# TODO are globals the best idea?
+home_dir = os.path.expanduser('~')
+script_dir = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 
-    files = os.listdir(dir_path)
+# directory is the relative path from scriptdir/homedir to process
+def process_dir(directory = ""):
+    # directory_path is the full path to the dotfiles directory we are processing
+    directory_path = script_dir + "/" + directory
+
+    # create the directory in homedir if it doesn't exist
+    if not os.path.exists(home_dir + "/" + directory):
+        print home_dir + "/" + directory + " does not exist. Creating it."
+        os.mkdir(home_dir + "/" + directory)
+
+    # get list of files in directory
+    files = os.listdir(directory_path)
     for file_name in files:
-        full_path = dir_path + "/" + file_name
+        # file_path = full path to the version controlled file
+        file_path = directory_path + "/" + file_name
+        # TODO fix this hack to remove double /'s
+        file_path = file_path.replace("//", "/")
+
+        # make sure file is relative to the dotfiles directory, not current directory
+        if directory != "":
+            file_name = directory + "/" + file_name
 
         # do nothing for certain files
-        if file_name not in special_files:
+        if file_name in special_files:
+            print "ignoring file " + file_name
+        else:
             # if this is a directory, call this function on it
-            if os.path.isdir(full_path):
-                print "found directory: %s" % (full_path,)
-                process_dir(full_path)
-            elif os.path.isfile(full_path):
-                process_file(full_path)
+            if os.path.isdir(file_path):
+                process_dir(file_name)
+            elif os.path.isfile(file_path):
+                process_file(file_name)
             else:
-                raise Exception("%s is neither a file nor directory" %(full_path,))
+                raise Exception(file_path + " is neither a file nor directory")
 
+
+# file_name is the relative path from scriptdir/homedir to process
 def process_file(file_name):
-    if file_name not in special_files:
-        if os.path.isfile(file_name):
+    # home_file_path is the full path to the destination symlink
+    home_file_path = home_dir + "/" + file_name
+    script_file_path = script_dir + "/" + file_name
+
+    # do nothing for certain files
+    if file_name in special_files:
+        print "ignoring file " + file_name
+    else:
+        if os.path.isfile(script_file_path):
             # if file already exists, make a backup
-            if os.path.exists("." + file_name):
-                print "." + file_name + " already exists. renaming it to " + file_name + ".backup"
-                os.rename("." + file_name, "." + file_name + ".backup")
+            if os.path.exists(home_file_path):
+                backup_path = home_file_path + ".backup-" + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) 
+                print home_file_path + " already exists. renaming it to " + backup_path
+                os.rename(home_file_path, backup_path)
 
             # create a simlink
-            #TODO This is resulting in dotfiles/./.gitconfig, which doesn't work for subdirs and is ugly
-            print "creating symlink for " + file_name + " to ." + file_name 
-            os.symlink("dotfiles/" + file_name, "." + file_name)
+            print "creating symlink " + home_file_path + " to " + script_file_path
+            os.symlink(script_file_path, home_file_path)
         else:
-            raise Exception("%s is not a file" %(file_name,))
+            raise Exception("%s is not a file" %(file_path,))
 
 
 if __name__ == '__main__':
-    process_dir('.')
+    process_dir()
