@@ -1,19 +1,9 @@
 I'm finally pushing my dotfiles up to git!
 
-This is mainly for me to solve the headaches I currently have with working on
-multiple machines. My .vimrc looks different on pretty much every machine I log
-in to.
+This is mainly for me to solve the headaches I currently have with working on multiple machines. My .vimrc looks different on pretty much every machine I log in to.
 
-I thought a lot about which was the best way to go about version controlling
-this. Do I really want a .git folder in my homedir? After trying several
-approaches using bash scripts, makefiles, and rakefiles, I emulated
-https://github.com/rtomayko/dotfiles. The main reason I chose this approach was
-to be able to push things like .ssh/authorized_keys without pushing or
-disrupting .ssh/known_hosts.
+I thought a lot about which was the best way to go about version controlling this. Do I really want a .git folder in my homedir? After trying several approaches using bash scripts, makefiles, and rakefiles, I decided to roll my own installer script. It turns out, I really like the idea of having this repo checked out to ~/dotfiles and then making symlinks into ~. A lot of people do this, but they symlink entire directories. The drawback there is when you have directories that you want under partial version control. For example, I want to be able to push things like .ssh/authorized_keys without pushing or disrupting .ssh/known_hosts.
 
-When using this approach, be sure to add a "*" line to the .gitignore file.
-Otherwise, git status will drive you nuts. You'll alsoneed to use `git add -f`
-to add new files moving forward.
+To Install: git clone https://github.com/kevinreedy/dotfiles.git && python dotfiles/install.py
 
-Feel free to grab anything from here that you find useful. I'd love to hear
-feedback from anyone!
+Feel free to grab anything from here that you find useful. I'd love to hear feedback from anyone!
