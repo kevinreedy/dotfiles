@@ -7,3 +7,5 @@ I thought a lot about which was the best way to go about version controlling thi
 To Install: git clone https://github.com/kevinreedy/dotfiles.git && python dotfiles/install.py
 
 Feel free to grab anything from here that you find useful. I'd love to hear feedback from anyone!
+
+Disclaimer: My code might be broken enough to cause headaches and/or data loss. Use at your own risk.
