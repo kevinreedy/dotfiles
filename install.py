@@ -24,7 +24,7 @@ def process_dir(directory = ""):
 
     # create the directory in homedir if it doesn't exist
     if not os.path.exists(home_dir + "/" + directory):
-        print home_dir + "/" + directory + " does not exist. Creating it."
+        print home_dir + "/" + directory + " does not exist; creating it"
         os.mkdir(home_dir + "/" + directory)
 
     # get list of files in directory
@@ -62,18 +62,25 @@ def process_file(file_name):
     if file_name in special_files:
         print "ignoring file " + file_name
     else:
-        if os.path.isfile(script_file_path):
+        # if a symlink is already in place and it links to the correct place, do nothing
+        if os.path.islink(home_file_path) and (os.path.realpath(home_file_path) == script_file_path):
+            print "proper symlink already exists for " + home_file_path + "; doing nothing"
+
+        # else make sure we are working on a file, not a directory
+        elif os.path.isfile(script_file_path):
             # if file already exists, make a backup
             if os.path.exists(home_file_path):
                 backup_path = home_file_path + ".backup-" + time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()) 
-                print home_file_path + " already exists. renaming it to " + backup_path
+                print home_file_path + " already exists; renaming it to " + backup_path
                 os.rename(home_file_path, backup_path)
 
             # create a simlink
             print "creating symlink " + home_file_path + " to " + script_file_path
             os.symlink(script_file_path, home_file_path)
+
+        # else we probably have a directory
         else:
-            raise Exception("%s is not a file" %(file_path,))
+            raise Exception(script_file_path + " is not a file")
 
 
 if __name__ == '__main__':
