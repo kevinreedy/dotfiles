@@ -84,7 +84,7 @@ settitle() {
 }
 
 ssh() {
-    settitle "`echo $* | cut -d. -f 1`"
+    settitle "`echo $* | rev | cut -d\  -f 1 | cut -d\@ -f 1 | rev | cut -d. -f 1`"
     command ssh "$@"
     settitle "bash"
 }
