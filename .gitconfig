@@ -5,3 +5,5 @@
 [user]
 	name = Kevin Reedy
 	email = kevinreedy@gmail.com
+[alias]
+	add-commit = !git add -A && git commit
