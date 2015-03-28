@@ -1,0 +1,16 @@
+google-chrome
+firefox
+dropbox
+1password
+spotify
+airfoil
+steam
+iterm2
+sublime-text
+atom
+ngrok
+chefdk
+virtualbox
+vagrant
+packer
+sequel-pro

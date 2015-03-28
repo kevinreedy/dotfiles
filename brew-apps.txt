@@ -1,0 +1,7 @@
+mtr --no-gtk
+nmap
+tmux
+wget
+s3cmd
+awscli
+fig

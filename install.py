@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os 
+import os
 import sys
 import time
 
@@ -9,7 +9,10 @@ special_files = {
     '.gitignore',
     'install.py',
     '.install.py.swp',
-    'README'
+    'README',
+    'brew.sh',
+    'brew-apps.txt',
+    'cask-apps.txt'
 }
 
 # TODO are globals the best idea?
