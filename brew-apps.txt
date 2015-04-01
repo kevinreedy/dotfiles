@@ -5,3 +5,4 @@ wget
 s3cmd
 awscli
 fig
+reattach-to-user-namespace
