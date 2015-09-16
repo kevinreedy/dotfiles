@@ -11,7 +11,9 @@ if [ -f ~/.bashrc ]; then
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[[ -s /Users/kreedy/.nvm/nvm.sh ]] && . /Users/kreedy/.nvm/nvm.sh # This loads NVM
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 function rmb {
   current_branch=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
