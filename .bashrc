@@ -90,9 +90,7 @@ ssh() {
     settitle "bash"
 }
 
-export DOCKER_HOST=tcp://192.168.59.103:2375
-export DOCKER_CERT_PATH=/Users/kreedy/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=
+eval "$(docker-machine env dev)"
 
 # added by travis gem
 [ -f /Users/kreedy/.travis/travis.sh ] && source /Users/kreedy/.travis/travis.sh
