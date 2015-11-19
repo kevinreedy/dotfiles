@@ -9,3 +9,4 @@ reattach-to-user-namespace
 heroku
 gpg
 nvm
+mysql
