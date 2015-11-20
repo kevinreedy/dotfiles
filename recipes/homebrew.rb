@@ -44,19 +44,21 @@ package 'mtr' do
   options '--no-gtk'
 end
 
-# TODO: cask apps
-# 1password
-# airfoil
-# atom
-# chefdk
-# dropbox
-# firefox
-# google-chrome
-# iterm2
-# ngrok
-# sequel-pro
-# spotify
-# steam
-# sublime-text
+# Install cask apps
+%w(
+  1password
+  airfoil
+  atom
+  dropbox
+  firefox
+  google-chrome
+  iterm2
+  sequel-pro
+  steam
+  sublime-text
+).each do |c|
+  homebrew_cask c
+end
+
 # vagrant
 # virtualbox
