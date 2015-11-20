@@ -8,5 +8,9 @@ DEPENDENCIES
     rel: cookbooks/mac
 
 GRAPH
+  build-essential (2.2.4)
   chef_desktop (0.1.0)
+    homebrew (>= 0.0.0)
+  homebrew (1.13.0)
+    build-essential (>= 2.1.2)
   mac (0.0.1)
