@@ -20,7 +20,8 @@
 # TODO: Make this platform agnostic instead of Mac-only
 %w(
   awscli
-  fig
+  docker-compose
+  docker-machine
   gpg
   heroku
   mysql
