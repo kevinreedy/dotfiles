@@ -13,6 +13,9 @@ provisioner:
 platforms:
   # guide to create osx boxes https://gist.github.com/rmoriz/37b671afe53c984b2f85
   - name: macosx-10.11
+    driver:
+      ssh:
+        insert_key: false
 #  - name: ubuntu-14.04
 
 suites:
