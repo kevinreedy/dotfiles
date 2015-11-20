@@ -16,6 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Install homebrew
+include_recipe 'homebrew'
+include_recipe 'homebrew::cask'
+
 # Install packages
 # TODO: Make this platform agnostic instead of Mac-only
 %w(
@@ -24,7 +28,6 @@
   docker-machine
   gpg
   heroku
-  mysql
   nmap
   nvm
   packer
