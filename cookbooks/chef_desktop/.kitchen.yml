@@ -11,8 +11,9 @@ provisioner:
 #   name: inspec
 
 platforms:
-  - name: ubuntu-14.04
-  - name: centos-7.1
+  # guide to create osx boxes https://gist.github.com/rmoriz/37b671afe53c984b2f85
+  - name: macosx-10.11
+#  - name: ubuntu-14.04
 
 suites:
   - name: default
