@@ -31,6 +31,7 @@
   reattach-to-user-namespace
   s3cmd
   tmux
+  watch
   wget
 ).each do |p|
   package p
