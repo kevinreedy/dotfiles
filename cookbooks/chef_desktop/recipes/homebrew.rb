@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chef_desktop
-# Recipe:: default
+# Recipe:: homebrew
 #
 # Copyright 2015 Kevin Reedy
 #
@@ -16,4 +16,42 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-include_recipe "#{cookbook_name}::homebrew"
+# Install packages
+# TODO: Make this platform agnostic instead of Mac-only
+%w(
+  awscli
+  fig
+  gpg
+  heroku
+  mysql
+  nmap
+  nvm
+  packer
+  reattach-to-user-namespace
+  s3cmd
+  tmux
+  wget
+).each do |p|
+  package p
+end
+
+package 'mtr' do
+  options '--no-gtk'
+end
+
+# TODO: cask apps
+# 1password
+# airfoil
+# atom
+# chefdk
+# dropbox
+# firefox
+# google-chrome
+# iterm2
+# ngrok
+# sequel-pro
+# spotify
+# steam
+# sublime-text
+# vagrant
+# virtualbox
