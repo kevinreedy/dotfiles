@@ -1,0 +1,12 @@
+DEPENDENCIES
+  chef_desktop
+    path: .
+    metadata: true
+  mac
+    git: https://github.com/echohack/chef_desktop.git
+    revision: 602d71399c07985f7602acb5246e605f98ee26a3
+    rel: cookbooks/mac
+
+GRAPH
+  chef_desktop (0.1.0)
+  mac (0.0.1)
