@@ -90,7 +90,5 @@ ssh() {
     settitle "bash"
 }
 
-eval "$(docker-machine env dev)"
-
 # added by travis gem
 [ -f /Users/kreedy/.travis/travis.sh ] && source /Users/kreedy/.travis/travis.sh
