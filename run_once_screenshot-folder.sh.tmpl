@@ -1,0 +1,6 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+mkdir ~/Desktop/Screenshots
+defaults write com.apple.screencapture location -string ~/Desktop/Screenshots
+{{ end -}}
