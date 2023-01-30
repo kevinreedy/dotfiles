@@ -1,0 +1,11 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+mkdir -p $HOME/Library/Application\ Support/Code/User
+ln -f -s {{ joinPath .chezmoi.sourceDir "vscode-settings.json"}} $HOME/Library/Application\ Support/Code/User/settings.json
+echo 'okay 4'
+{{ end -}}
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+mkdir -p $HOME/.config/Code/User
+ln -f -s {{ joinPath .chezmoi.sourceDir "vscode-settings.json" }} $HOME/.config/Code/User/settings.json
+{{ end -}}
