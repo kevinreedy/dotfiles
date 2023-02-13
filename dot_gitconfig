@@ -1,3 +1,5 @@
 [user]
 	name = Kevin Reedy
 	email = kevinreedy@github.com
+[init]
+	defaultBranch = main
